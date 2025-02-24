@@ -12,13 +12,14 @@ datasource db {
 
 // User model with relationships to incomes, expenses, and categories.
 model User {
-  id         String     @id @default(cuid())
-  name       String?
-  email      String     @unique
-  image      String?
-  incomes    Income[]
-  expenses   Expense[]
-  categories Category[]
+  id            String     @id @default(cuid())
+  name          String?
+  email         String     @unique
+  emailVerified DateTime? // Add this field
+  image         String?
+  incomes       Income[]
+  expenses      Expense[]
+  categories    Category[]
 
   // Auth-related relations (if using NextAuth/AuthJS with Prisma)
   accounts Account[]
