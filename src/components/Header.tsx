@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button, Divider } from "@heroui/react";
 import React from "react";
 import * as actions from "@/actions";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 const Header = () => {
   const session = useSession();
@@ -14,7 +14,7 @@ const Header = () => {
   };
 
   const handleSignout = () => {
-    actions.signoutAction();
+    signOut();
   };
 
   return (
@@ -31,8 +31,9 @@ const Header = () => {
             Transactions
           </Link>
         </div>
-
-        {!session.data?.user ? (
+        {session.status === "loading" ? (
+          "Loading auth status..."
+        ) : !session.data?.user ? (
           <div className="flex gap-4">
             <Button color="secondary" onPress={handleSignup}>
               Signup

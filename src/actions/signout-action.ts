@@ -1,9 +1,9 @@
 "use server";
 
-import * as actions from "@/auth";
+import { signOut } from "next-auth/react";
 
 export const signoutAction = async () => {
   console.log("signing out user...");
 
-  return actions.signOut();
+  return signOut();
 };
